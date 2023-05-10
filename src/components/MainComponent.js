@@ -4,29 +4,27 @@ import EditTaskComponent from "./EditTaskComponent";
 const MainComponent = ({ todo, setTodo, filteredTodos }) => {
 
 
-    const deleteFromList = (id, index) => {
-        setTodo(todo.filter((task, index) => id !== index));
-        console.log("id  ", id, "index  ", index);
+    const deleteFromList = (id) => {
+        setTodo(todo.filter((task) => task.id !== id));
+
     }
 
-    const toggleCheck = (id, index) => {
-        setTodo(todo.map((task, index) => index === id ? { ...task, done: !task.done } : task
+    const toggleCheck = (id) => {
+        setTodo(todo.map((task) => task.id === id ? { ...task, done: !task.done } : task
         ))
-
-        console.log("id  ", id, "index  ", index);
     }
 
-    const allToggleCheck = (index) => {
-        setTodo(todo.map((task, index) => task.done ? { ...task, done: !task.done } : { ...task, done: !task.done }))
+    const allToggleCheck = () => {
+        setTodo(todo.map((task) => task.done ? { ...task, done: !task.done } : { ...task, done: !task.done }))
     }
 
 
     const editTodo = (id) => {
-        setTodo(todo.map((task, index) => index === id ? { ...task, isEditing: !task.isEditing } : task))
+        setTodo(todo.map((task) => task.id === id ? { ...task, isEditing: !task.isEditing } : task))
     }
 
     const editTask = (editValue, id) => {
-        setTodo(todo.map((task, index) => index === id ? { ...task, text: editValue, isEditing: !task.isEditing } : task))
+        setTodo(todo.map((task) => task.id === id ? { ...task, text: editValue, isEditing: !task.isEditing } : task))
     }
 
     return (
@@ -39,10 +37,10 @@ const MainComponent = ({ todo, setTodo, filteredTodos }) => {
 
             <ul className="todo-list">
 
-                {filteredTodos.map((task, index) => {
+                {filteredTodos.map((task) => {
                     return (
-                        task.isEditing ? (<EditTaskComponent key={index} id={index} task={task} editTodo={editTask} />) : (
-                            <TaskComponent key={index} id={index} task={task} index={index} deleteFromList={deleteFromList} toggleCheck={toggleCheck} editTodo={editTodo} />
+                        task.isEditing ? (<EditTaskComponent key={task.id} id={task.id} task={task} editTodo={editTask} />) : (
+                            <TaskComponent key={task.id} id={task.id} task={task} deleteFromList={deleteFromList} toggleCheck={toggleCheck} editTodo={editTodo} />
                         )
 
                     );

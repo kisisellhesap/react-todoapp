@@ -28,7 +28,7 @@ const TodoApp = () => {
     const addTheList = (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
-            setTodo([...todo, { text: taskText, done: false, isEditing: false }]);
+            setTodo([...todo, { id: todo.length + 1, text: taskText, done: false, isEditing: false }]);
             setTaskText("");
         }
     }

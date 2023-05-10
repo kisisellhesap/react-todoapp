@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const EditTaskComponent = ({ todo, setTodo, task, editTodo, id }) => {
+const EditTaskComponent = ({ task, editTodo, id }) => {
 
     const [editText, setEditText] = useState(task.text);
 
